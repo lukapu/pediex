@@ -1,17 +1,2 @@
-Subject ID,Father ID,Mother ID,Descriptors,Sex ID
-Emiro,None,None,Green,1
-Clara,None,None,White,0
-Marte,Emiro,Clara,White,1
-Icusra,None,None,White,0
-Leucerta,None,None,White,0
-Volturno,Marte,Icusra,White,1
-Quadro,Marte,Icusra,White,1
-Pastrano,Marte,Leucerta,White,1
-Peseta,None,None,White,0
-Perfetta,None,None,White,0
-Turbo,Quadro,Peseta,White,1
-Tonante,Quadro,Perfetta,White,1
-Neafa,None,None,White,0
-Gigia,Pastrano,Neafa,White,0
-Zeus,Pastrano,Neafa,White,1
-Barbara,None,Gigia,White,0
+TierID	tst	TierLID	gDat	Sex	VaterID	MutterID	Rasse
+1  A    20000101  2  123 456  HF
