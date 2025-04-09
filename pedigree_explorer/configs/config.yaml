@@ -1,0 +1,11 @@
+input_data: "data/AllAnimals.v1.TxT"
+filter_by_descriptors:  # Optional filters (leave empty if not needed)
+  #Sex: "2"  # Example: Filter for females
+subject_id: "276000950288532"  # Example subject ID
+founders:
+  - "000009073000300"  # Example founder ID
+max_generations: 20
+output:
+  enable_visualization: false
+  visualization_folder: "outputs/visualizations"
+  visualization_format: "png"
