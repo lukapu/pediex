@@ -16,11 +16,6 @@
 
 ## Installation
 
-### Prerequisites
-- Install Mamba (a faster alternative to Conda):
-  ```bash
-  conda install -n base -c conda-forge mamba
-
 Clone the Repository
 
 ```bash
