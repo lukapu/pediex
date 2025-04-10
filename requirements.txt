@@ -1,5 +1,0 @@
-pyyaml                # For loading configuration files (config.yaml)
-networkx              # For building and analyzing the pedigree graph
-matplotlib            # For optional visualization of graphs
-graphviz              # For creating visualizations (if used in the project)
-pandas                # For handling tabular data (if needed for data processing)
