@@ -16,23 +16,24 @@
 
 ## Installation
 
-### Clone the Repository
+### Prerequisites
+- Install Mamba (a faster alternative to Conda):
+  ```bash
+  conda install -n base -c conda-forge mamba
 
-git clone https://github.com/your-username/pedigree-explorer.git
-cd pedigree-explorer
-
-### Install Dependencies
-
-Python Dependencies
+Clone the Repository
 
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/your-username/pediex.git
+cd pediex
 ```
 
-R Dependencies
+Create and Activate the Environment
+Use Mamba to create the environment and install all dependencies:
 
-```R
-install.packages("pedtools")
+```bash
+mamba env create -f environment.yml
+mamba activate pediex
 ```
 
 ## Prepare Input Data
