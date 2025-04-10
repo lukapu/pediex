@@ -1,4 +1,4 @@
-name: pediex
+name: pediextest12
 channels:
   - conda-forge
   - defaults
@@ -13,7 +13,9 @@ dependencies:
 
   # R dependencies
   - r-base
-  - r-pedtools
+  - r-essentials  # Includes basic R tools like install.packages
+  - r-devtools     # For GitHub installation if needed
 
   # Additional tools
   - pip
+
