@@ -24,7 +24,7 @@
 Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/pediex.git
+git clone https://github.com/lukapu/pediex.git
 cd pediex
 ```
 
@@ -35,7 +35,10 @@ Use Mamba to create the environment and install all dependencies:
 mamba env create -f environment.yml
 mamba activate pediex
 ```
-
+Download the [pedtools](https://github.com/magnusdv/pedtools) package
+```bash
+R -e "install.packages('pedtools', repos='https://cran.rstudio.com/')"
+```
 ## Prepare Input Data
 
 Place your input dataset (e.g., AllAnimals.v2.TxT) in the data/ folder. Update the configs/config.yaml file with the appropriate paths and parameters.
