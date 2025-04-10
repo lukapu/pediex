@@ -1,4 +1,4 @@
-name: pediextest6
+name: pediex
 channels:
   - conda-forge
   - defaults
