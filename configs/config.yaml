@@ -1,4 +1,4 @@
-input_data: "data/AllAnimals.v1.TxT"
+input_data: "data/AllAnimals.v2.TxT"
 filter_by_descriptors:  # Optional filters (leave empty if not needed)
   #Sex: "2"  # Example: Filter for females
 subject_id: "276000950288532"  # Example subject ID

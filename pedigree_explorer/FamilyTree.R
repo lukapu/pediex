@@ -7,7 +7,7 @@ if (length(args) < 2) {
   stop("Usage: Rscript FamilyTree.R <input_file> <subject_id> [<founder_ids>]")
 }
 file_path <- args[1]
-subject_id <- args[2]
+subject_id <- args[2]  # Correctly use the subject_id from the arguments
 founder_ids <- if (length(args) > 2) args[3:length(args)] else NULL
 
 # Load the pedigree data
@@ -54,12 +54,60 @@ for (i in 1:nrow(ped_data)) {
 # Convert the data into a pedigree object
 ped <- ped(id = ped_data$id, fid = ped_data$fid, mid = ped_data$mid, sex = ped_data$sex)
 
+# Load the tst annotation file
+tst_data <- read.table("outputs/visualizations/tst_info.txt", header = TRUE, stringsAsFactors = FALSE)
+
+# Define color mapping
+tst_colors <- c(
+  A = "#550527",
+  G = "#688E26",
+  P = "#FAA613",
+  S = "#1E90FF"  # some nice blue
+)
+
+# Create a named vector with colors for each individual, default to gray if not found
+ped_colors <- rep("gray80", length(ped$ID))
+names(ped_colors) <- ped$ID
+
+# Assign colors based on tst value
+for (i in seq_along(ped$ID)) {
+  individual_id <- ped$ID[i]
+  tst_row <- tst_data[tst_data$id == individual_id, ]
+  if (nrow(tst_row) == 1 && tst_row$tst %in% names(tst_colors)) {
+    ped_colors[i] <- tst_colors[tst_row$tst]
+  }
+}
+
+
 # Save the pedigree plot as a PNG file
 output_dir <- "outputs/visualizations/"
 if (!dir.exists(output_dir)) {
   dir.create(output_dir, recursive = TRUE)  # Create the directory if it doesn't exist
 }
 output_file <- paste0(output_dir, "pedigree_tree.png")
-png(output_file, width = 1920, height = 1080)
-plot(ped, title = paste("Path from:", subject_id, "to founder(s):", paste(founder_ids, collapse = ", ")))
+png(output_file, width = 1600, height = 900)  # Increase plot dimensions
+
+# Adjust plot margins to make space for the legend
+par(mar = c(5, 4, 4, 12))  # Increase the right margin slightly
+
+# Plot your pedigree
+plot(
+  ped,
+  title = paste("Path from:", subject_id, "to founder(s):", paste(founder_ids, collapse = ", ")),
+  col = ped_colors,
+  lwd = 7
+)
+
+# Add a custom legend
+legend(
+  x = "topright",  # Position the legend at the top-right corner
+  inset = c(0, 0),  
+  legend = c("G - Genotyped", "P - In project", "S - Available samples for sequencing", "A - All the rest"),
+  fill = c("#688E26", "#FAA613", "#1E90FF", "#550527"),
+  border = "black",
+  bty = "n",  # No border around the legend box
+  cex = 1.5,  # Increase the size of the text
+  xpd = TRUE  # Allow the legend to be drawn outside the plot area
+)
+
 dev.off()
