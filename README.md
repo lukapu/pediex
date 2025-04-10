@@ -21,7 +21,7 @@
 git clone https://github.com/your-username/pedigree-explorer.git
 cd pedigree-explorer
 
-###Install Dependencies
+### Install Dependencies
 
 Python Dependencies
 
@@ -35,7 +35,7 @@ R Dependencies
 install.packages("pedtools")
 ```
 
-##Prepare Input Data
+## Prepare Input Data
 
 Place your input dataset (e.g., AllAnimals.v2.TxT) in the data/ folder. Update the configs/config.yaml file with the appropriate paths and parameters.
 Configuration
@@ -54,7 +54,7 @@ data_format:
     - MutterID
     - Rasse
 
-###Config example
+### Config example
 
 ```yaml
 input_data: "data/AllAnimals.v2.TxT"
@@ -70,7 +70,7 @@ output:
   visualization_format: "png"
 ```
 
-##Usage
+## Usage
 Run the Main Script
 
 ```bash
@@ -86,7 +86,7 @@ Outputs
     Pedigree Plot:
         outputs/visualizations/pedigree_tree.png: Pedigree visualization.
 
-##How It Works
+## How It Works
 
     Load Configuration:
     The main.py script reads the config.yaml file to determine input paths, subject IDs, founders, and other parameters.
@@ -103,7 +103,7 @@ Outputs
     Visualize Pedigree:
     The FamilyTree.R script generates a pedigree plot with color-coded annotations based on tst values.
 
-##Visualization
+## Visualization
 
 The pedigree plot is generated using the FamilyTree.R script. Boxes are color-coded based on tst values:
 
@@ -137,4 +137,4 @@ Troubleshooting
     R Script Errors:
     Verify that the tst_info.txt file matches the IDs in parent_info_renamed.txt.
 
-#For graphing  [pedtools](https://github.com/magnusdv/pedtools).
+# For graphing  [pedtools](https://github.com/magnusdv/pedtools).
