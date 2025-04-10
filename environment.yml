@@ -1,0 +1,19 @@
+name: pediex
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Python dependencies
+  - python=3.9
+  - pyyaml
+  - networkx
+  - matplotlib
+  - graphviz
+  - pandas
+
+  # R dependencies
+  - r-base
+  - r-pedtools
+
+  # Additional tools
+  - pip
