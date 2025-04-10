@@ -1,6 +1,6 @@
 # Pediex
 
-**Pediex** is a scalable toolset for parsing, analyzing, and visualizing pedigree trees from large datasets. It is designed to trace ancestry paths, extract parent information, and generate pedigree visualizations with color-coded annotations.
+**Pediex** is a scalable toolset for parsing, analyzing, and visualizing pedigree trees from large datasets. It is designed to trace ancestry paths, extract parent information, and generate pedigree visualizations with the help of [pedtools](https://github.com/magnusdv/pedtools).
 
 ---
 
