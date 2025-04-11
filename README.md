@@ -1,14 +1,12 @@
 # Pediex
 
-**Pediex** is designed to trace ancestry paths, extract parent information, and generate pedigree visualizations with the help of [pedtools](https://github.com/magnusdv/pedtools).
+**Pediex** is designed to trace ancestry paths, and generate pedigree visualizations with the help of [pedtools](https://github.com/magnusdv/pedtools).
 
 ---
 
 ## Features
 
 - **Trace Ancestry Paths**: Identify the shortest paths from a subject to specified founders.
-- **Parent Information Extraction**: Extract parent and sex information from a dataset.
-- **ID Renaming**: Replace raw IDs with TierLIDs for consistency.
 - **Pedigree Visualization**: Generate pedigree plots with color-coded annotations based on tst values.
 - **Configurable Workflows**: Use a YAML configuration file to customize inputs, outputs, and processing options.
 
