@@ -56,14 +56,50 @@ def main():
             check_for_duplicates(subject_ids, allanimals_path)
 
             # Create dynamic folder structure for each subject_founder combination
-            # Create dynamic folder structure for each subject_founder combination
             subject_founder_folder = os.path.join(script_dir, f"outputs/{subject_id}_{founder}")
             paths_folder = os.path.join(subject_founder_folder, "paths")
             os.makedirs(subject_founder_folder, exist_ok=True)
             os.makedirs(paths_folder, exist_ok=True)
 
-            # Define the renamed parent info file path
+            # Define paths for parent info and renamed files
+            parent_info_file = os.path.join(paths_folder, f"parent_info_{founder}.txt")
             renamed_parent_info_file = os.path.join(paths_folder, f"parent_info_renamed_{founder}.txt")
+            tst_file = os.path.join(paths_folder, f"tst_info_{founder}.txt")
+
+            # Debugging paths
+            print(f"Input file: {parent_info_file}")
+            print(f"Output file: {renamed_parent_info_file}")
+            print(f"Database file: {allanimals_path}")
+
+            # Extract parent information for the subject IDs
+            print(f"Extracting parent information for founder {founder}...")
+            parent_info = get_parent_info(subject_ids, allanimals_path, output_file=parent_info_file)
+
+            # Save parent information to a .txt file for R
+            print(f"Saving parent information to {parent_info_file}...")
+            with open(parent_info_file, "w") as f:
+                f.write("id\tfid\tmid\tsex\n")
+                for subject_id, (father_id, mother_id) in parent_info.items():
+                    # Fetch the sex information from the original data if needed
+                    sex = subjects[subject_id]["descriptors"].get("Sex", "unknown")
+                    f.write(f"{subject_id}\t{father_id}\t{mother_id}\t{sex}\n")
+
+            # Rename IDs in the parent_info file using TierLIDs and collect tst values
+            print("Renaming IDs in the parent_info file and collecting tst values...")
+            tst_dict = rename(
+                input_file=parent_info_file,
+                output_file=renamed_parent_info_file,
+                database_file=allanimals_path
+            )
+
+            # Save tst_dict to a file for the R script
+            print(f"Saving TST information to {tst_file}...")
+            with open(tst_file, "w") as f:
+                f.write("id\ttst\n")
+                for id_, tst in tst_dict.items():
+                    f.write(f"{id_}\t{tst}\n")
+
+            print(f"TST information saved to {tst_file}.")
 
             # Save the pedigree plot as a PNG file directly in the subject_founder_folder
             output_file = os.path.join(subject_founder_folder, f"shortest_paths_{subject_id}_{founder}.png")
