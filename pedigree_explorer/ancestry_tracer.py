@@ -1,4 +1,4 @@
-def trace_to_founders(graph, subject_id, founders, max_depth=10):
+def trace_to_founders(graph, subject_id, founders, max_depth=20):
     paths = []
 
     def dfs(node, path, depth):
