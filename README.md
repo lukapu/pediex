@@ -34,7 +34,7 @@ R -e "install.packages('pedtools', repos='https://cran.rstudio.com/')"
 ```
 ## Prepare Input Data
 
-Place your input dataset (e.g., AllAnimals.v2.TxT) in the data/ folder. Update the configs/config.yaml file with the appropriate paths and parameters.
+Remove the example datasets and place your input dataset (e.g., AllAnimals.v2.TxT) in the data/ folder. Update the configs/config.yaml file with the appropriate paths and parameters.
 Configuration
 
 The configs/config.yaml file controls the behavior of the tool. Below is an example configuration:
@@ -57,9 +57,9 @@ data_format:
 input_data: "data/AllAnimals.v2.TxT"
 filter_by_descriptors:  # Optional filters (leave empty if not needed)
   # Sex: "2"  # Example: Filter for females
-subject_id: "276000950288532"  # Example subject ID
+subject_id: "276000950288532"  # Example subject ID or TierLID
 founders:
-  - "000009073000300"  # Example founder ID
+  - "000009073000300"  # Example founder ID or TierLID
 max_generations: 20
 output:
   enable_visualization: true
@@ -90,6 +90,9 @@ Outputs
 
     Trace Ancestry Paths:
     The trace_to_founders function finds the shortest paths from the subject to the founders.
+    
+    Check for possible duplicates:
+    Check whether there are 2 individuals with the same ID but different parents.
 
     Extract Parent Information:
     The get_parent_info function extracts parent and sex information for all individuals in the ancestry paths.
@@ -102,7 +105,7 @@ Outputs
 
 ## Visualization
 
-The pedigree plot is generated using the FamilyTree.R script. Boxes are color-coded based on tst values:
+The pedigree plot is generated using the FamilyTree.R script. Boxes are color-coded based on tst values. These values and colors can be changed in the R script:
 
     G (Genotyped): #688E26 (Green)
     P (In Project): #FAA613 (Yellow)
@@ -112,7 +115,7 @@ The pedigree plot is generated using the FamilyTree.R script. Boxes are color-co
 Example Workflow
 
     Input Data:
-        AllAnimals.v2.TxT contains columns like TierID, VaterID, MutterID, Sex, and TierLID.
+        AllAnimals.v2.TxT contains columns like ID, tst, TierLID, VaterID, MutterID, Sex and rasse.
 
     Configuration:
         Specify the subject_id and founders in config.yaml.
@@ -121,12 +124,12 @@ Example Workflow
         Execute main.py to generate outputs.
 
     Output:
-        View the pedigree plot in outputs/visualizations/pedigree_tree.png.
+        View the pedigree plot in outputs/subjectid_founderid/.
 
 Troubleshooting
 
     Legend Cutoff in Pedigree Plot:
-    Adjust the par(mar = c(...)) and legend() parameters in FamilyTree.R to ensure the legend fits within the plot.
+    Adjust the par(mar = c(...)) and legend() parameters (mainly position "topright","bottomleft",..) in FamilyTree.R to ensure the legend fits within the      plot.
 
     Missing IDs:
     Ensure all fid and mid values in parent_info_renamed.txt are present in the id column.
@@ -134,4 +137,4 @@ Troubleshooting
     R Script Errors:
     Verify that the tst_info.txt file matches the IDs in parent_info_renamed.txt.
 
-# For graphing  [pedtools](https://github.com/magnusdv/pedtools).
+# Graphical visualization of the shortest is achieved with [pedtools](https://github.com/magnusdv/pedtools).
